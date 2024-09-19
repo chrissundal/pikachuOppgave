@@ -73,9 +73,9 @@ button:hover {
     border: 2px solid black;
     border-radius: 10px;
     height: 450px;
-    width: 350px;
+    width: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .innerCart {

@@ -51,6 +51,42 @@ let animals = [
         health: 15,
         image: "IMG/ekorn.png",
         level: 1
+    },
+    {
+        name: "Lynx",
+        health: 60,
+        image: "IMG/lynx.png",
+        level: 6
+    },
+    {
+        name: "Rabbit",
+        health: 20,
+        image: "IMG/rabbit.png",
+        level: 1
+    },
+    {
+        name: "Badger",
+        health: 70,
+        image: "IMG/badger.png",
+        level: 3
+    },
+    {
+        name: "Icebear",
+        health: 100,
+        image: "IMG/icebear.png",
+        level: 11
+    },
+    {
+        name: "Rocket",
+        health: 70,
+        image: "IMG/rocket.png",
+        level: 12
+    },
+    {
+        name: "Dog",
+        health: 35,
+        image: "IMG/dog.png",
+        level: 4
     }
 ]
 
@@ -88,6 +124,9 @@ function updateView() {
                 usj det var leit, alle er borte
                 </div>`;
         gameOver();
+    }
+    if (player[0].health >= 100) {
+        player[0].health = 100;
     }
 
 }
