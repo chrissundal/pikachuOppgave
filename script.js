@@ -4,6 +4,7 @@ let showAnimalDiv = '';
 let chanceOfSuccess = 0;
 let gameText = '';
 let isOpen = false;
+const appDiv = document.getElementById('app');
 let animalStorage = [];
 let player = [
     {
@@ -92,7 +93,7 @@ let animals = [
 
 updateView();
 function updateView() {
-    document.getElementById('app').innerHTML = /*HTML*/`
+    appDiv.innerHTML = /*HTML*/`
 <div class="container">
     ${showAnimalDiv}
     <div class="bottomScreen">
@@ -116,35 +117,35 @@ function updateView() {
         <div class="motstander">
             usj det var leit, der døde du visst
             </div>`;
-        gameOver();
-    }
-    if (animals.length <= 0) {
-        showAnimalDiv = `
+            gameOver();
+        }
+        if (animals.length <= 0) {
+            showAnimalDiv = `
             <div class="motstander">
                 usj det var leit, alle er borte
                 </div>`;
-        gameOver();
-    }
-    if (player[0].health >= 100) {
-        player[0].health = 100;
-    }
-
-}
-function createDropdown() {
-    if (isOpen == false) return `<button onclick="openAnimalBag()">Vis dine dyr</button>`;
-    return `
+                gameOver();
+            }
+            if (player[0].health >= 100) {
+                player[0].health = 100;
+            }
+            
+        }
+        function createDropdown() {
+            if (isOpen == false) return `<button onclick="openAnimalBag()">Vis dine dyr</button>`;
+            return `
         <div class="openBag">
             ${createInnerBag()}   
             </div>
             <button class="closeanimal" onclick="closeAnimalBag()">lukk bag</button>
         `;
-}
-
-
-function createInnerBag() {
-    let html = '';
-    for (let index = 0; index < animalStorage.length; index++) {
-        html += `
+    }
+    
+    
+    function createInnerBag() {
+        let html = '';
+        for (let index = 0; index < animalStorage.length; index++) {
+            html += `
         <div class="innerCart">
             <div>${animalStorage[index].name} <br> lvl: ${animalStorage[index].level} <br> HP: ${animalStorage[index].health}</div>
             <img src="${animalStorage[index].image}" width= 50px height = 40px/>
@@ -154,6 +155,7 @@ function createInnerBag() {
     }
     return html;
 }
+
 
 function newAnimal() {
     showAnimalDiv = '';
@@ -172,6 +174,7 @@ function newAnimal() {
 function catchAnimal() {
     chanceOfSuccess = player[0].level / animals[randomAnimal].level;
     if (Math.random() < chanceOfSuccess) {
+        caughtView();
         player[0].health += 10;
         gameText = '';
         player[0].level += 1;
@@ -182,9 +185,19 @@ function catchAnimal() {
         player[0].health -= 10;
         animals[randomAnimal].level += 1
     }
-    console.log(chanceOfSuccess)
-    updateView();
-    newAnimal();
+}
+function caughtView(){
+    let caughtView = `
+    <div class="container">
+        <div class="caught">
+            Du fanget ${animals[randomAnimal].name} 
+            <img src="${animals[randomAnimal].image}" width= 500px height = 400px/>
+            </div>
+        </div>
+    `;
+    appDiv.innerHTML = caughtView;
+    setTimeout(newAnimal, 5000);
+
 }
 function deleteAnimal(index) {
     animalStorage.splice(index, 1)

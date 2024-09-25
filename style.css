@@ -11,6 +11,7 @@ body {
     box-shadow: 5px 5px 5px darkgrey;
 }
 
+
 .buttonContainer {
     position: absolute;
     z-index: 2;
@@ -37,7 +38,13 @@ button:hover {
     width: 500px;
     margin: 20px;
 }
-
+.caught{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
 .animalImg {
     margin: 20px;
     width: 400px;
